@@ -1,0 +1,32 @@
+.App{
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.form-control-sm{
+ 
+    position: relative;
+    top: 5%;
+  
+    left: 0%;
+    right: 100%;
+}
+.nav-item{
+    margin: 15px ;
+}
+.button-text{
+    text-align: center;
+}
+.contenido{
+    max-width: 800px;
+    width: 100%;
+    display: table;
+    margin: 0 auto;
+    padding: 20px 50px;
+    height: 720px;
+}
+
+

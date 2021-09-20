@@ -17,9 +17,9 @@ const Lector =()=>{
   
 			reader.onload = (event) => {
 				let content = event.target.result;
-		
-				const invalidCharacters = [' ', '\n', '\r']
-				content = Array.from(content).map(character => {
+				console.log(content)
+				const invalidCharacters = [' ', '\n', '\r','\t']
+				content = Array.from(content).map((character) => {
 				if(!invalidCharacters.includes(character)){
 					return character;
 				}
@@ -39,12 +39,48 @@ const Lector =()=>{
 				}
 				}
 				
-		
-			
 				console.log(words)
 		
 				words = words.filter(word=>word !== '')
+				
 				console.log(words)
+				let startIndex=null, lastIndex=null;
+
+				const deleteComments = () => {
+					console.log(startIndex, lastIndex)
+					const array1 = words.slice(0,startIndex);
+					const array2 = words.slice(lastIndex+1,words.length);
+					console.log("primera parte: ",array1)
+					console.log("Segunda parte: ",array2)
+	
+					words = array1.concat(array2)
+					console.log(words)
+				
+				}
+				let word;
+				for (let index = 0; index < words.length; index++) {
+					word = words[index]
+
+					if(word[0] === "/" && word[1] === "*" ) {
+						//aqui inicia
+						startIndex=index
+					}
+					else if ( word[word.length-2]=== "*" && word[word.length-1] === "/" ) {
+						//aqui el fin
+						lastIndex = index;
+					}
+					if(startIndex !== null && lastIndex !== null) {
+						deleteComments()
+						index=0
+						startIndex = null
+						lastIndex = null
+					}
+					
+				}
+		
+
+				
+				
 				setTextFile(words)
 			}
 			reader.readAsText(file)

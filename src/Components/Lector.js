@@ -24,13 +24,13 @@ const Lector =()=>{
 				let words = []
 				let helper = ''
 				for (const character of content) {
-				if(character !== ' ' ){
-					helper += character;
-				}
-				else{
-					words.push(helper)
-					helper = ''
-				}
+					if(character !== ' ' ){
+						helper += character;
+					}
+					else{
+						words.push(helper)
+						helper = ''
+					}
 				}
 				
 				console.log(words)

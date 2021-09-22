@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { Form } from "react-bootstrap";
 
-const Lector =()=>{
+const Reader =()=>{
 	const [textFile, setTextFile] = useState(null);
 	const [file, setFile] = useState(null)
 	
@@ -122,4 +122,4 @@ const Lector =()=>{
     );
 };
 
-export default Lector;
+export default Reader;

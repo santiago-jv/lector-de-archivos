@@ -10,6 +10,6 @@ En la carpeta del proyecto, puedes ejecutar la aplicación con:
 
 ### `npm start`
 
-Abre [http://localhost:3000](http://localhost:3000) para ver en el nagedador.
+Abre [http://localhost:3000](http://localhost:3000) para ver en el navegador.
 
 

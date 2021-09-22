@@ -4,6 +4,7 @@ import { Form } from "react-bootstrap";
 const Lector =()=>{
 	const [textFile, setTextFile] = useState(null);
 	const [file, setFile] = useState(null)
+	
 	const handleFile = (event) => {
 	  	const file = event.target.files[0];
 		if(file) {
@@ -18,35 +19,29 @@ const Lector =()=>{
 			reader.onload = (event) => {
 				let content = event.target.result;
 				console.log(content)
+				content = content.replace(/(\/\*\s*.*\s*\*\/|\/\/.*|\\\w)/g,"")
 				content = content.replace(/\s+/gm, " ")
-				console.log(content)
 				
 				let words = []
 				let helper = ''
 				for (const character of content) {
-				if(character !== ' ' ){
-					helper += character;
+					if(character !== ' ' ){
+						helper += character;
+					}
+					else{
+						words.push(helper)
+						helper = ''
+					}
 				}
-				else{
-					words.push(helper)
-					helper = ''
-				}
-				}
-				
-				console.log(words)
-				
-			
+								
 				let startIndex=null, lastIndex=null;
-
+		
 				const deleteComments = () => {
 					console.log(startIndex, lastIndex)
 					const array1 = words.slice(0,startIndex);
-					const array2 = words.slice(lastIndex+1,words.length);
-					console.log("primera parte: ",array1)
-					console.log("Segunda parte: ",array2)
-	
+					const array2 = words.slice(lastIndex+1,words.length);	
 					words = array1.concat(array2)
-					console.log(words)
+					
 				
 				}
 				let word;
@@ -68,6 +63,7 @@ const Lector =()=>{
 					}
 					
 				}	
+				
 				setTextFile(words)
 			}
 			reader.readAsText(file)
@@ -91,7 +87,7 @@ const Lector =()=>{
 			
 				<li className="nav-item">
 					
-					<div className="">
+					<div>
 						<Form.Group controlId="formFile" className="mb-3">
 							<Form.Label>Adjunta un archivo .cpp</Form.Label>
 							<Form.Control type="file" accept=".cpp" onChange={handleFile}/>
@@ -111,7 +107,6 @@ const Lector =()=>{
          
               	<code className="card-text">
 					{!textFile? "No hay un archivo subido aún.":
-					
 						textFile.map((word,index) => {
 							return <p key={index}>{word}</p>   
 						})

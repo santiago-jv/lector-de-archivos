@@ -1,14 +1,14 @@
 
 import './App.css';
 import '../src/CSS/Styles.css'
-import Lector from './Components/Lector';
+import Reader from './Components/Lector.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
       
         
-        <Lector/>
+        <Reader/>
     
     </div>
   );
